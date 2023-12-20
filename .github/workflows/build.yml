@@ -8,7 +8,7 @@ on:
 env:
     IMAGE_NAME: ucore-kmods
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-    SOURCE_IMAGE: fedora-coreos
+    SOURCE_IMAGE: fedora-kinoite
 
 jobs:
   push-ghcr:
@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        coreos_version: [stable, testing]
+        coreos_version: [39]
     steps:
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
