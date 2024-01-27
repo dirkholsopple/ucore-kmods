@@ -8,7 +8,8 @@ on:
 env:
     IMAGE_NAME: ucore-kmods
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-    SOURCE_IMAGE: fedora-kinoite
+    BASE_IMAGE: ghcr.io/ublue-os/kinoite-main
+    SOURCE_IMAGE: kinoite-main
 
 jobs:
   push-ghcr:
@@ -77,7 +78,7 @@ jobs:
       - name: Get current versions
         id: labels
         run: |
-          skopeo inspect docker://quay.io/fedora/${{ env.SOURCE_IMAGE }}:${{ matrix.coreos_version }} > inspect.json
+          skopeo inspect docker://${{ env.BASE_IMAGE }}:${{ matrix.coreos_version }} > inspect.json
           version=$(jq -r '.Labels["org.opencontainers.image.version"]' inspect.json)
           linux=$(jq -r '.Labels["ostree.linux"]' inspect.json)
           echo "VERSION=$version" >> $GITHUB_OUTPUT

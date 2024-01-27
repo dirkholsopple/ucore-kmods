@@ -1,10 +1,10 @@
 #Build from base, simpley because it's the smallest image
-ARG SOURCE_IMAGE="${SOURCE_IMAGE:-fedora-coreos}"
-ARG BASE_IMAGE="quay.io/fedora/${SOURCE_IMAGE}"
-ARG COREOS_VERSION="${COREOS_VERSION:-stable}"
+ARG SOURCE_IMAGE="${SOURCE_IMAGE:-kinoite-main}"
+ARG BASE_IMAGE="ghcr.io/ublue-os/${SOURCE_IMAGE}"
+ARG COREOS_VERSION="${COREOS_VERSION:-39}"
 
 FROM ${BASE_IMAGE}:${COREOS_VERSION} AS builder
-ARG COREOS_VERSION="${COREOS_VERSION:-stable}"
+ARG COREOS_VERSION="${COREOS_VERSION:-39}"
 
 COPY build*.sh /tmp
 COPY certs /tmp/certs
