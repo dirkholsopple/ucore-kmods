@@ -1,10 +1,10 @@
 #Build from base, simpley because it's the smallest image
 ARG SOURCE_IMAGE="${SOURCE_IMAGE:-kinoite-main}"
 ARG BASE_IMAGE="ghcr.io/ublue-os/${SOURCE_IMAGE}"
-ARG COREOS_VERSION="${COREOS_VERSION:-39}"
+ARG COREOS_VERSION="${COREOS_VERSION:-40}"
 
 FROM ${BASE_IMAGE}:${COREOS_VERSION} AS builder
-ARG COREOS_VERSION="${COREOS_VERSION:-39}"
+ARG COREOS_VERSION="${COREOS_VERSION:-40}"
 
 COPY build*.sh /tmp
 COPY certs /tmp/certs
@@ -17,7 +17,6 @@ ADD files/usr/lib/systemd/system/ublue-nvctk-cdi.service \
         /tmp/ublue-os-ucore-nvidia/rpmbuild/SOURCES/ublue-nvctk-cdi.service
 ADD files/usr/lib/systemd/system-preset/70-ublue-nvctk-cdi.preset \
         /tmp/ublue-os-ucore-nvidia/rpmbuild/SOURCES/70-ublue-nvctk-cdi.preset
-
 
 RUN /tmp/build-prep.sh
 
